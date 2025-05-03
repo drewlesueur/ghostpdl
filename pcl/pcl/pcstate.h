@@ -391,7 +391,11 @@ static inline int check_rasterops(pcl_state_t * pcs, byte op)
      */
     if (pcs->high_level_device && !pcs->supports_rasterops && op != 252) {
         errprintf(pcs->memory, "Unsupported use of RasterOP %d detected. Output may not be correct.\n", op);
-        return_error(gs_error_undefined);
+
+        // make it white on error to try to prevent a bunch of black boxes.
+        (void)gs_setgray(pcs->pgs, 1.0);
+
+        //return_error(gs_error_undefined);
     }
     return 0;
 }
