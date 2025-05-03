@@ -7,11 +7,7 @@ autoreconf -fvi
 
 
 #  -O2 -Wall
-export CFLAGS="
-  -DHAVE_SYS_TIMES_H=0
-  -DHAVE_FUNC_TIMES=0
-  -DGS_LIB_DEFAULT=\"/mingw64/share/ghostpdl\"
-"
+export CFLAGS="-DHAVE_SYS_TIMES_H=0 -DHAVE_FUNC_TIMES=0 -DGS_LIB_DEFAULT=\"/mingw64/share/ghostpdl\""
 
 ./configure --prefix=/mingw64
 make -j"$(nproc)"
