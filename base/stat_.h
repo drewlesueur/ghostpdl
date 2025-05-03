@@ -22,6 +22,10 @@
 /* We must include std.h before any file that includes sys/types.h. */
 #include "std.h"
 
+#if defined(__MINGW32__)
+#  include <direct.h>   /* for _mkdir() */
+#endif
+
 /* Metrowerks Standard Library doesn't use subdirs */
 #ifdef __MWERKS__
 #include <stat.h>
