@@ -17,6 +17,9 @@
 
 set -euo pipefail
 
+# don't convert /mingw64/whatever to C:\mingw64\whatever
+export MSYS2_ARG_CONV_EXCL="*"
+
 # 1) Clean out any old build artifacts
 git clean -xdf
 
@@ -37,13 +40,13 @@ make -j"$(nproc)"
 # 6) Patch gconfigd.h: 
 #    - Replace the Windows‐style prefix (C:\msys64\mingw64) with /mingw64
 #    - Then turn all remaining backslashes into forward‐slashes
-sed -i \
-  -e 's#C:\\msys64\\mingw64#/mingw64#g' \
-  -e 's#\\#/#g' \
-  obj/gconfigd.h
+# sed -i \
+#   -e 's#C:\\msys64\\mingw64#/mingw64#g' \
+#   -e 's#\\#/#g' \
+#   obj/gconfigd.h
 
 # 7) Recompile the two objects that pull in gconfigd.h
-make -j"$(nproc)" obj/gconfig.o obj/gscdefs.o
+# make -j"$(nproc)" obj/gconfig.o obj/gscdefs.o
 
 # 8) Install into /mingw64
 make install
