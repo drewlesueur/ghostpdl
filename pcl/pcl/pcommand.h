@@ -309,6 +309,7 @@ typedef enum
 #define LF 0xa
 #define VERT_TAB 0xb
 #define FF 0xc
+#undef  CR      /* avoid Win32 macro clash */
 #define CR 0xd
 #define SO 0xe
 #define SI 0xf
