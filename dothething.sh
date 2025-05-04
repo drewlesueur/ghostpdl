@@ -38,8 +38,8 @@ make -j"$(nproc)"
 #    - Replace the Windows‐style prefix (C:\msys64\mingw64) with /mingw64
 #    - Then turn all remaining backslashes into forward‐slashes
 sed -i \
-  -e 's#C:\\\\msys64\\\\mingw64#/mingw64#g' \
-  -e 's#\\\\#/#g' \
+  -e 's#C:\\msys64\\mingw64#/mingw64#g' \
+  -e 's#\\#/#g' \
   obj/gconfigd.h
 
 # 7) Recompile the two objects that pull in gconfigd.h
