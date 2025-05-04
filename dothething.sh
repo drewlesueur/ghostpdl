@@ -18,7 +18,11 @@
 set -euo pipefail
 
 # don't convert /mingw64/whatever to C:\mingw64\whatever
-export MSYS2_ARG_CONV_EXCL="*"
+# export MSYS2_ARG_CONV_EXCL="*"
+# export MSYS2_ENV_CONV_EXCL='*'
+# this does both
+export MSYS2_NO_PATHCONV=1
+
 
 # 1) Clean out any old build artifacts
 git clean -xdf
